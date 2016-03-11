@@ -3,76 +3,338 @@ HOST: http://polls.apiblueprint.org/
 
 # icp-users-api
 
-This is an ICP API documentation for so called "Users app". This documentation originally comes from API implemented in https://github.com/MLS-ICP/ipsos-users repository.
+This is an ICP API documentation for so called "Users app" from a "Primary app" perspective.
+This documentation was based on apps implemented in following repos: 
+* https://github.com/MLS-ICP/ipsos-users
+* https://github.com/MLS-ICP/ipsos
 
-## Users management [/users]
+## Users [/users/{user_id}]
 
-### Test API [GET]
++ Parameters
+    + user_id (number) - ID of the User in the form of an integer
+
+### Get User [GET]
+
++ Request
+
+    + Headers
+
+            Content-Type: application/json
+            Accept: application/json
+
++ Response 200 (application/json)
+
+            {
+              "id": 3638,
+              "email": "mca@marketlogicsoftware.com",
+              "first_name": "Marcin1",
+              "last_name": "Calka1",
+              "avatar": null,
+              "language": null,
+              "title": "Test",
+              "company_name": "MLS",
+              "bio": "Test Bio",
+              "phone": "12345678",
+              "companies": [
+                {
+                  "image": "",
+                  "large_logo": "",
+                  "description": "",
+                  "url": "mls.com",
+                  "name": "MLS",
+                  "id": 31,
+                  "neo_url": "http://localhost:7474",
+                  "languages": "",
+                  "installation_id": "multi_tenant_0",
+                  "divisions_count": 0,
+                  "brands_count": 0,
+                  "projects_count": 0,
+                  "insights_count": 0,
+                  "observations_count": 0
+                }
+              ]
+            }
+
+## User password [/users/password]
+
+### Reset User Password [GET]
+
++ Request
+
+    + Headers
+
+            Content-Type: application/json
+            Accept: application/json
+
+
++ Response 200 (application/json)
+
+            {
+              "id": 3638,
+              "email": "mca@marketlogicsoftware.com",
+              "first_name": "Marcin1",
+              "last_name": "Calka1",
+              "avatar": "/images/avatars/john_d@2x.png",
+              "language": null,
+              "title": "Test",
+              "company_name": "MLS",
+              "bio": "Test Bio 123",
+              "phone": "12345678",
+              "password": "Ty47eLcqEpdlMfPEBI9f"
+            }
+
+## Companies [/companies]
+
+### List all Companies [GET]
+
++ Request
+
+    + Headers
+
+            Content-Type: application/json
+            Accept: application/json
+
+
++ Response 200 (application/json)
+
+            [
+                {
+                    "id": 31,
+                    "name": "MLS",
+                    "url": "mls.com",
+                    "image": "",
+                    "neo_url": "http://localhost:7474",
+                    "languages": "",
+                    "installation_id": "multi_tenant_0",
+                    "divisions_count": 0,
+                    "brands_count": 0,
+                    "projects_count": 0,
+                    "insights_count": 0,
+                    "observations_count": 0,
+                    "large_logo": "",
+                    "description": "",
+                    "users_count": "2"
+                },
+                {
+                    "id": 32,
+                    "name": "MLS2",
+                    "url": "mls2.com",
+                    "image": "",
+                    "neo_url": "http://localhost:7575",
+                    "languages": "",
+                    "installation_id": "multi_tenant_1",
+                    "divisions_count": 0,
+                    "brands_count": 0,
+                    "projects_count": 0,
+                    "insights_count": 0,
+                    "observations_count": 0,
+                    "large_logo": "",
+                    "description": "",
+                    "users_count": "3"
+                }
+            ]
+
+## User's Companies [/users/{user_id}/companies]
+
+### List all Companies belonging to User [GET]
+
++ Parameters
+    + user_id (number) - ID of the User in the form of an integer
+
++ Request
+    
+    + Headers
+
+            Content-Type: application/json
+            Accept: application/json
+
++ Response 200 (application/json)
+
+            [
+                {
+                    "id": 31,
+                    "name": "MLS",
+                    "url": "mls.com",
+                    "image": "",
+                    "neo_url": "http://localhost:7474",
+                    "languages": "",
+                    "installation_id": "multi_tenant_0",
+                    "divisions_count": 0,
+                    "brands_count": 0,
+                    "projects_count": 0,
+                    "insights_count": 0,
+                    "observations_count": 0,
+                    "large_logo": "",
+                    "description": "",
+                    "users_count": "2"
+                },
+                {
+                    "id": 32,
+                    "name": "MLS2",
+                    "url": "mls2.com",
+                    "image": "",
+                    "neo_url": "http://localhost:7575",
+                    "languages": "",
+                    "installation_id": "multi_tenant_1",
+                    "divisions_count": 0,
+                    "brands_count": 0,
+                    "projects_count": 0,
+                    "insights_count": 0,
+                    "observations_count": 0,
+                    "large_logo": "",
+                    "description": "",
+                    "users_count": "3"
+                }
+            ]
+        
+## Company's Users [/companies/{company_id}/users]
+
+### List all Users belonging to Company [GET]
+
++ Parameters
+    + company_id (number) - ID of the Company in the form of an integer
+
++ Request
+    
+    + Headers
+
+            Content-Type: application/json
+            Accept: application/json
 
 + Response 200 (application/json)
 
         [
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
+                "admin": true,
+                "avatar": null,
+                "first_name": "Marcin1",
+                "last_name": "Calka1",
+                "email": "mca18@mls.com",
+                "id": 3636,
+                "language": null,
+                "title": "Test",
+                "bio": "Test Bio",
+                "phone": "12345678",
+                "company_name": "MLS",
+                "access": "edit"
+            },
+            {
+                "admin": true,
+                "avatar": null,
+                "first_name": "Marcin1",
+                "last_name": "Calka1",
+                "email": "mca17@mls.com",
+                "id": 3635,
+                "language": null,
+                "title": "Test",
+                "bio": "Test Bio",
+                "phone": "12345678",
+                "company_name": "MLS",
+                "access": "edit"
+            },
+            {
+                "admin": true,
+                "avatar": null,
+                "first_name": "Marcin1",
+                "last_name": "Calka1",
+                "email": "mca16@mls.com",
+                "id": 3634,
+                "language": null,
+                "title": "Test",
+                "bio": "Test Bio",
+                "phone": "12345678",
+                "company_name": "MLS",
+                "access": "edit"
             }
         ]
+            
+### Create a new User belonging to Company [POST]
 
-## Companies management [/companies]
-
-### Test API [POST]
-
++ Parameters
+    + company_id (number) - ID of the Company in the form of an integer
+            
 + Request (application/json)
 
-        {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
-        }
+            {
+                "admin":true,
+                "global":true,
+                "email":"mca18@mls.com",
+                "first_name":"Marcin",
+                "last_name":"Calka",
+                "title":"Test",
+                "company_name":"MLS",
+                "phone":"12345678",
+                "bio":"Test Bio",
+                "access":"edit"
+                "avatar":"http://image.com/abc1234567890.png"
+            }
 
 + Response 201 (application/json)
 
-    + Headers
+            {
+                "admin": true,
+                "global": true,
+                "email": "mca18@mls.com",
+                "first_name": "Marcin",
+                "last_name": "Calka",
+                "title": "Test",
+                "company_name": "MLS",
+                "phone": "12345678",
+                "bio": "Test Bio",
+                "access": "edit",
+                "id": 3636,
+                "password": "xd9Mf3TOcyjv96zV4t8V"
+                "avatar":"http://image.com/abc1234567890.png"
+            }
 
-            Location: /questions/2
+## Company's Users [/companies/{company_id}/users/{user_id}]
 
-    + Body
++ Parameters
+    + company_id (number) - ID of the Company in the form of an integer
+    + user_id (number) - ID of the User in the form of an integer
+
+### Update existing User belonging to Company [PUT]
+
++ Request (application/json)
 
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
+                "admin":true,
+                "global":true,
+                "email":"mca18@mls.com",
+                "first_name":"Marcin 2",
+                "last_name":"Calka 2",
+                "title":"Test 2",
+                "company_name":"MLS",
+                "phone":"12345678",
+                "bio":"Test Bio",
+                "access":"edit"
+                "avatar":"http://image.com/abc1234567890.png"
             }
+
++ Response 200 (application/json)
+
+            {
+                "admin": true,
+                "email": "mca18@mls.com",
+                "first_name": "Marcin",
+                "last_name": "Calka",
+                "email":"mca18@mls.com",
+                "title": "Test",
+                "language": null,
+                "company_name": "MLS",
+                "phone": "12345678",
+                "bio": "Test Bio",
+                "access": "edit",
+                "id": 3636
+            }
+            
+### Delete existing User belonging to Company [DELETE]
+
++ Request
+    
+    + Headers
+
+            Content-Type: application/json
+            Accept: application/json
+
++ Response 204 (application/json)
