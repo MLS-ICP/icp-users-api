@@ -193,7 +193,6 @@ This documentation was based on apps implemented in following repos:
 
 + Parameters
     + company_id (number, required) - ID of the Company in the form of an integer
-    + user_id (number, optional) - ID of the User in the form of an integer
 
 + Request
     
@@ -252,10 +251,16 @@ This documentation was based on apps implemented in following repos:
 ### Create a new User belonging to Company [POST]
 
 + Parameters
-    + company_id (number) - ID of the Company in the form of an integer
+    + company_id (number, required) - ID of the Company in the form of an integer
             
-+ Request (application/json)
++ Request
 
+    + Headers
+    
+            Content-Type: application/json
+
+    + Body
+    
             {
                 "admin":true,
                 "global":true,
@@ -290,8 +295,18 @@ This documentation was based on apps implemented in following repos:
 
 ### Update existing User belonging to Company [PUT]
 
-+ Request (application/json)
++ Parameters
+    + company_id (number, required) - ID of the Company in the form of an integer
+    + user_id (number, required) - ID of the User in the form of an integer
 
++ Request
+
+    + Headers
+    
+            Content-Type: application/json
+
+    + Body
+    
             {
                 "admin":true,
                 "global":true,
@@ -324,6 +339,10 @@ This documentation was based on apps implemented in following repos:
             }
             
 ### Delete existing User belonging to Company [DELETE]
+
++ Parameters
+    + company_id (number, required) - ID of the Company in the form of an integer
+    + user_id (number, required) - ID of the User in the form of an integer
 
 + Request
     
