@@ -55,7 +55,7 @@ This documentation was based on apps implemented in following repos:
               ]
             }
 
-## User password [/users/password]
+## User Password [/users/password]
 
 ### Reset User Password [GET]
 
@@ -187,12 +187,13 @@ This documentation was based on apps implemented in following repos:
                 }
             ]
         
-## Company's Users [/companies/{company_id}/users]
+## Company's Users [/companies/{company_id}/users/{user_id}]
 
 ### List all Users belonging to Company [GET]
 
 + Parameters
-    + company_id (number) - ID of the Company in the form of an integer
+    + company_id (number, required) - ID of the Company in the form of an integer
+    + user_id (number, optional) - ID of the User in the form of an integer
 
 + Request
     
@@ -286,12 +287,6 @@ This documentation was based on apps implemented in following repos:
                 "password": "xd9Mf3TOcyjv96zV4t8V"
                 "avatar":"http://image.com/abc1234567890.png"
             }
-
-## Company's Users [/companies/{company_id}/users/{user_id}]
-
-+ Parameters
-    + company_id (number) - ID of the Company in the form of an integer
-    + user_id (number) - ID of the User in the form of an integer
 
 ### Update existing User belonging to Company [PUT]
 
